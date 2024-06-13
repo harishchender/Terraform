@@ -1,9 +1,13 @@
 provider "aws" {
-  region     = "ap-south-1"
+  region     = "us-east-1"
   access_key = "AKIAQ3EGQWKUR6AEKGPK"
   secret_key = "PlAeRC6MsZ7QVreA2bHgHvp12jS9VbP+6JsPakTC"
 }
 
-resource "aws_s3_bucket" "example" {
+data "aws_s3_bucket" "mybucket" {
    bucket = "harish-bucket"
+}
+
+output "my_bucket_name" {
+   value = "${data.aws_s3_bucket.mybucket.bucket}"
 }
